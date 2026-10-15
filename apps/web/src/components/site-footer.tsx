@@ -1,0 +1,7 @@
+import { Link } from 'react-router';
+import { WhatsAppAction } from '@/components/whatsapp-action';
+import { EMAIL, FIRM_NAME, LOGO_URL, PHONE, PHONE_URL, SOCIAL_LINKS } from '@/constants/brand';
+
+export function SiteFooter() {
+  return <footer className="site-footer"><div className="container footer-main"><div className="footer-brand"><a href="/#inicio" className="brand"><img src={LOGO_URL} alt={`Logo de ${FIRM_NAME}`} width="50" height="50" loading="lazy"/><span>Compara <strong>Tu Obra Social</strong></span></a><p>Opciones de obras sociales y prepagas con asesoramiento personalizado en CABA y el AMBA.</p></div><div className="footer-links"><span>Explorá</span><a href="/#inicio">Inicio</a><Link to="/prepagas">Prepagas</Link><Link to="/obras-sociales">Obras sociales</Link><Link to="/guias/cotizador-de-aportes">Cotizador de aportes</Link><Link to="/guias">Guías</Link><a href="/#preguntas">Preguntas frecuentes</a></div><div className="footer-contact"><span>Hablemos</span><p>Tu próxima cobertura empieza con una conversación.</p><WhatsAppAction className="underlined-link" />{PHONE_URL && <a href={PHONE_URL}>{PHONE}</a>}{EMAIL && <a href={`mailto:${EMAIL}`}>{EMAIL}</a>}{SOCIAL_LINKS.map(link => <a key={link.url} href={link.url} target="_blank" rel="noopener noreferrer">{link.label}</a>)}</div></div><div className="container footer-bottom"><span>© {new Date().getFullYear()} {FIRM_NAME}.</span><span>Una elección con más claridad.</span></div></footer>;
+}

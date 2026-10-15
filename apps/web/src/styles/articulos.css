@@ -1,0 +1,134 @@
+/*
+ * Páginas SEO (prepagas, obras sociales, zonas, guías, cotizador).
+ * Prefijo .doc- para no tocar nada de la home. Colores, tipografía, bordes y
+ * botones son los de index.css; formulario, preguntas frecuentes y banda final
+ * reutilizan directamente las clases de la home.
+ */
+
+/* ---------- Cabecera ---------- */
+.doc-hero { position: relative; padding-top: 86px; background: #f4faf5; }
+.doc-hero-inner { max-width: 900px; padding: 64px 0 60px; animation: doc-arrive .7s ease-out both; }
+@keyframes doc-arrive { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+.doc-breadcrumb ol { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; list-style: none; margin: 0 0 38px; padding: 0; font-size: 12px; font-weight: 600; color: #5e796d; }
+.doc-breadcrumb li { display: inline-flex; align-items: center; gap: 10px; }
+.doc-breadcrumb li + li::before { content: '/'; color: #a9c8b4; }
+.doc-breadcrumb a { transition: color .2s; }
+.doc-breadcrumb a:hover { color: #0B2B26; }
+.doc-breadcrumb [aria-current] { color: #0B2B26; }
+.doc-hero h1 { font-size: clamp(44px, 4.8vw, 76px); line-height: 1.08; margin: 0 0 28px; }
+.doc-hero h1 em { display: block; font-style: normal; color: #5c9077; }
+.doc-hero h1 em .period { color: #8EB69B; }
+.doc-lead { max-width: 620px; color: #47645a; font-size: 16px; line-height: 1.8; margin: 0 0 32px; }
+.doc-meta { display: flex; justify-content: space-between; gap: 20px; border-top: 1px solid #d7e8db; padding: 18px 0 24px; font-size: 12px; font-weight: 600; color: #45665a; }
+
+/* ---------- Cuerpo ---------- */
+.doc-body { background: #fff; padding: 110px 0 120px; }
+.doc-grid { display: grid; grid-template-columns: minmax(0, 1fr) 290px; gap: clamp(60px, 8vw, 130px); align-items: start; }
+.doc-article { max-width: 720px; min-width: 0; }
+.doc-article-wide { max-width: 980px; }
+.doc-section { scroll-margin-top: 110px; }
+.doc-section + .doc-section, .doc-cta + .doc-section { margin-top: 80px; }
+.doc-article h2 { font-size: clamp(30px, 3vw, 44px); line-height: 1.15; margin: 0 0 26px; }
+.doc-article h3 { font-size: 20px; font-weight: 600; line-height: 1.3; letter-spacing: -.035em; color: #0B2B26; margin: 36px 0 10px; }
+.doc-article p { font-size: 16px; line-height: 1.85; color: #3e5a50; margin: 0 0 22px; }
+.doc-article p a, .doc-list li a { color: #235347; font-weight: 600; border-bottom: 1px solid #8EB69B; transition: color .2s, border-color .2s; }
+.doc-article p a:hover, .doc-list li a:hover { color: #5c9077; border-color: #5c9077; }
+
+.doc-list { list-style: none; margin: 6px 0 30px; padding: 0; border-top: 1px solid #d5e6da; }
+.doc-list li { position: relative; padding: 16px 0 16px 34px; border-bottom: 1px solid #d5e6da; font-size: 15px; line-height: 1.7; color: #3e5a50; }
+.doc-list li::before { content: ''; position: absolute; left: 0; top: 28px; width: 18px; height: 1px; background: #8EB69B; }
+
+.doc-steps { list-style: none; margin: 6px 0 30px; padding: 0; }
+.doc-steps li { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 22px; padding: 26px 0; border-top: 1px solid #d5e6da; }
+.doc-steps li:last-child { border-bottom: 1px solid #d5e6da; }
+.doc-steps .step-marker { display: grid; place-items: center; width: 40px; height: 40px; border: 1px solid #8EB69B; border-radius: 50%; color: #235347; font-size: 14px; font-weight: 700; }
+.doc-steps h3 { margin: 0 0 6px; font-size: 18px; }
+.doc-steps p { font-size: 15px; line-height: 1.75; margin: 0; }
+
+/* Nota destacada: el recurso de la línea verde del formulario de la home */
+.doc-article .doc-note { margin: 32px 0; padding: 2px 0 2px 24px; border-left: 2px solid #8EB69B; font-size: 16px; font-weight: 600; line-height: 1.7; color: #235347; }
+
+/* ---------- CTA en la mitad ---------- */
+.doc-cta { margin: 80px 0; padding: clamp(30px, 4vw, 48px); background: #eef7ef; border-radius: 6px; }
+.doc-article .doc-cta-title { font-size: clamp(24px, 2.4vw, 32px); font-weight: 600; line-height: 1.2; letter-spacing: -.045em; color: #0B2B26; margin: 0 0 12px; }
+.doc-article .doc-cta-text { font-size: 15px; color: #587268; max-width: 520px; margin: 0; }
+.doc-cta-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 13px; margin-top: 26px; }
+
+/* ---------- Índice lateral ---------- */
+.doc-aside { position: sticky; top: 120px; display: flex; flex-direction: column; gap: 40px; }
+.doc-aside-title { font-size: 13px; font-weight: 700; letter-spacing: .045em; color: #235347; margin: 0 0 16px; }
+.doc-toc ol { list-style: none; margin: 0; padding: 0; border-left: 1px solid #d5e6da; }
+.doc-toc a { display: block; padding: 7px 0 7px 18px; margin-left: -1px; border-left: 1px solid transparent; font-size: 13px; font-weight: 500; line-height: 1.45; color: #587268; transition: color .2s, border-color .2s; }
+.doc-toc a:hover { color: #0B2B26; border-color: #235347; }
+.doc-aside-cta { padding: 28px 24px; background: #f4faf5; border-radius: 6px; }
+.doc-aside-cta .doc-aside-title { line-height: 1.3; font-size: 19px; font-weight: 600; letter-spacing: -.035em; color: #0B2B26; margin-bottom: 8px; }
+.doc-aside-cta p:not(.doc-aside-title) { font-size: 13px; line-height: 1.65; color: #587268; margin: 0 0 20px; }
+.doc-aside-cta .button { width: 100%; min-height: 48px; padding: 0 16px; gap: 10px; }
+.doc-aside-cta .button + .button { margin-top: 6px; }
+
+/* ---------- Filas de enlaces (como la lista de coberturas de la home) ---------- */
+.doc-rows { list-style: none; margin: 0; padding: 0; border-top: 1px solid #d5e6da; }
+.doc-rows a { display: grid; grid-template-columns: minmax(0, 1fr) 24px; gap: 6px 24px; padding: 24px 0; border-bottom: 1px solid #d5e6da; transition: padding .25s; }
+.doc-rows a:hover { padding-left: 10px; }
+.doc-row-title { font-size: clamp(18px, 1.8vw, 22px); font-weight: 600; letter-spacing: -.035em; color: #0B2B26; transition: color .2s; }
+.doc-row-text { grid-column: 1; font-size: 13px; line-height: 1.65; color: #587268; }
+.doc-row-arrow { grid-column: 2; grid-row: 1 / span 2; align-self: center; color: #0B2B26; transition: color .2s; }
+.doc-rows a:hover .doc-row-title, .doc-rows a:hover .doc-row-arrow { color: #4e856b; }
+
+/* Preguntas frecuentes: usa .faq-items de la home, ajustado al ancho del artículo */
+.doc-article .faq-items details p { font-size: 14px; line-height: 1.7; margin: 0; }
+.doc-article .doc-disclaimer { margin: 60px 0 0; padding-top: 20px; border-top: 1px solid #d5e6da; font-size: 12px; line-height: 1.6; color: #6e8976; }
+
+/* ---------- Relacionadas ---------- */
+.doc-related { background: #f4faf5; }
+.doc-related h2 { margin: 0 0 48px; }
+.doc-related .doc-rows { border-color: #c9ddcd; }
+.doc-related .doc-rows a { border-color: #c9ddcd; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr) 24px; align-items: center; padding: 30px 0; }
+.doc-related .doc-row-text { grid-column: 2; }
+.doc-related .doc-row-arrow { grid-column: 3; grid-row: 1; }
+
+/* ---------- Cotizador ---------- */
+.doc-calc { margin: 0 0 80px; padding: clamp(25px, 4vw, 48px); background: #eef7ef; border-radius: 6px; }
+.doc-article .doc-calc-title { font-size: 24px; font-weight: 600; letter-spacing: -.04em; color: #0B2B26; margin: 0 0 26px; padding-bottom: 20px; border-bottom: 1px solid #c9ddcd; }
+.doc-calc .field input { background: #fff; }
+.doc-calc-result { margin-top: 10px; padding-top: 22px; border-top: 1px solid #c9ddcd; }
+.doc-article .doc-calc-total { display: flex; flex-direction: column; gap: 6px; margin: 0 0 14px; font-size: clamp(28px, 3vw, 40px); font-weight: 600; letter-spacing: -.045em; line-height: 1.15; color: #0B2B26; }
+.doc-calc-total span { font-size: 13px; font-weight: 700; letter-spacing: 0; color: #235347; }
+.doc-article .doc-calc-note { font-size: 13px; line-height: 1.6; color: #587268; margin: 0 0 22px; }
+
+/* ---------- Header: evita que el menú se apile con las dos secciones nuevas ---------- */
+.desktop-nav a { white-space: nowrap; }
+@media (max-width: 940px) and (min-width: 851px) { .desktop-nav a:first-child { display: none; } }
+
+/* ---------- Responsive (mismos cortes que la home) ---------- */
+@media (max-width: 1100px) { .doc-grid { grid-template-columns: minmax(0, 1fr) 250px; gap: 56px; } }
+@media (max-width: 1000px) {
+  .doc-grid { grid-template-columns: 1fr; }
+  .doc-aside { display: none; }
+  .doc-article { max-width: 760px; }
+}
+@media (max-width: 850px) {
+  .doc-related .doc-rows a { grid-template-columns: minmax(0, 1fr) 24px; align-items: start; }
+  .doc-related .doc-row-text { grid-column: 1; }
+  .doc-related .doc-row-arrow { grid-column: 2; grid-row: 1 / span 2; }
+}
+@media (max-width: 640px) {
+  .doc-hero { padding-top: 70px; }
+  .doc-hero-inner { padding: 44px 0 40px; }
+  .doc-breadcrumb ol { margin-bottom: 28px; }
+  .doc-hero h1 { font-size: clamp(38px, 10.5vw, 54px); margin-bottom: 22px; }
+  .doc-lead { font-size: 15px; margin-bottom: 26px; }
+  .doc-hero .hero-buttons { flex-direction: column; align-items: stretch; gap: 8px; }
+  .doc-hero .hero-buttons .button { width: 100%; }
+  .doc-meta { flex-direction: column; gap: 4px; font-size: 11px; }
+  .doc-body { padding: 70px 0 80px; }
+  .doc-section + .doc-section, .doc-cta + .doc-section { margin-top: 60px; }
+  .doc-article h2 { font-size: clamp(28px, 8vw, 36px); }
+  .doc-article p { font-size: 15px; }
+  .doc-cta { margin: 60px -4px; padding: 28px 20px; }
+  .doc-cta-actions { flex-direction: column; align-items: stretch; }
+  .doc-cta-actions .button { width: 100%; }
+  .doc-steps li { grid-template-columns: 34px minmax(0, 1fr); gap: 16px; }
+  .doc-steps .step-marker { width: 34px; height: 34px; }
+  .doc-calc { margin: 0 -4px 60px; padding: 25px 20px; }
+}

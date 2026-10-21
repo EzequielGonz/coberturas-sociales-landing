@@ -11,6 +11,8 @@ import {
 import type { Route } from './+types/root';
 import stylesheet from '@/index.css?url';
 import articulosStylesheet from '@/styles/articulos.css?url';
+// Ajustes del 21/10 (CTA por sección, WhatsApp, nombre de la firma). Va último para prevalecer.
+import ajustesStylesheet from '@/styles/ajustes.css?url';
 import { publicOrigin } from '@/lib/site-origin.server';
 import { VERIFICATION } from '@/constants/brand';
 import { HorizonsPreviewScripts } from './horizons-preview-scripts';
@@ -36,6 +38,7 @@ function RevealObserver() {
 export const links: Route.LinksFunction = () => [
 	{ rel: 'stylesheet', href: stylesheet },
 	{ rel: 'stylesheet', href: articulosStylesheet },
+	{ rel: 'stylesheet', href: ajustesStylesheet },
 	{ rel: 'icon', href: logo, type: 'image/png' },
 	{ rel: 'preconnect', href: 'https://fonts.googleapis.com' },
 	{

@@ -9,20 +9,20 @@ export const LOGO_URL = 'https://horizons-cdn.hostinger.com/151eeb22-3829-49b1-a
 export const SHARE_IMAGE_URL = 'https://images.hostinger.com/7bbe0a7b-418c-4cfd-bc96-ac602b28175d.png';
 
 /** Dominio definitivo con https y sin barra final. Ej: 'https://www.comparatuobrasocial.com.ar'. */
-export const SITE_URL = '';
+export const SITE_URL = 'https://comparatuobrasocial.com';
 
 /** Teléfono como se muestra, ej. '(011) 4000-0000', y en formato internacional para marcar, ej. '+541140000000'. */
-export const PHONE = '';
-export const PHONE_E164 = '';
+export const PHONE = '11 7290-0587';
+export const PHONE_E164 = '+5491172900587';
 
 /** WhatsApp: solo números, con 549. Ej: '5491140000000'. Mientras esté vacío, los botones llevan al formulario. */
-export const WHATSAPP_NUMBER = '';
+export const WHATSAPP_NUMBER = '5491172900587';
 export const WHATSAPP_DEFAULT_MESSAGE = 'Hola, quiero asesoramiento para elegir una cobertura médica.';
 
-export const EMAIL = '';
-export const INSTAGRAM_URL = '';   // Ej: 'https://www.instagram.com/comparatuobrasocial'
-export const INSTAGRAM_HANDLE = ''; // Ej: '@comparatuobrasocial'
-export const FACEBOOK_URL = '';
+export const EMAIL = 'comparatuobrasocial@hotmail.com';
+export const INSTAGRAM_URL = 'https://www.instagram.com/comparatuobrasocial/';
+export const INSTAGRAM_HANDLE = '@comparatuobrasocial';
+export const FACEBOOK_URL = 'https://www.facebook.com/profile.php?id=61594606546289';
 export const TIKTOK_URL = '';
 export const LINKEDIN_URL = '';
 

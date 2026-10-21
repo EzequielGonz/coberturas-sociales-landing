@@ -1,0 +1,21 @@
+
+/* 21/10 · Botones de WhatsApp reconocibles y llamados a la acción entre secciones */
+.button svg { flex-shrink: 0; }
+.button-whatsapp { background: #25D366; color: #0B2B26; gap: 10px; border-color: #25D366; }
+.button-whatsapp:hover { background: #1ebe5b; border-color: #1ebe5b; }
+.final-cta .button-whatsapp, .doc-cta .button-whatsapp { color: #0B2B26; }
+.floating-whatsapp { background: #25D366; color: #fff; }
+.floating-whatsapp:hover { background: #1ebe5b; }
+.seccion-cta { background: #eaf5ec; border-block: 1px solid #d5e6da; padding-block: 34px; }
+.seccion-cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+.seccion-cta-titulo { font-weight: 800; font-size: 18px; color: #0B2B26; margin: 0 0 6px; }
+.seccion-cta-texto { margin: 0; color: #4f6b5e; font-size: 14px; max-width: 620px; }
+.seccion-cta-acciones { display: flex; align-items: center; gap: 18px; flex-shrink: 0; }
+.seccion-cta-tel { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14px; color: #0B2B26; }
+@media (max-width: 760px) {
+  .seccion-cta-inner { flex-direction: column; align-items: stretch; gap: 18px; }
+  .seccion-cta-acciones { flex-direction: column; align-items: stretch; }
+  .seccion-cta-acciones .button { width: 100%; }
+  .seccion-cta-tel { justify-content: center; }
+  .hero-buttons .button-whatsapp { width: 100%; min-height: 48px; font-size: 13px; }
+}

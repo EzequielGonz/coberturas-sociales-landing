@@ -18,7 +18,7 @@ type Props = {
  */
 export function ContactButtons({ whatsappMessage, origen, formLabel, callLabel, tone = 'dark' }: Props) {
   const primary = tone === 'dark' ? 'button button-dark' : 'button button-light';
-  const secondary = tone === 'dark' ? 'button button-text' : 'button button-outline-light';
+  const secondary = 'button button-whatsapp';
   return (
     <>
       {PHONE_URL ? (

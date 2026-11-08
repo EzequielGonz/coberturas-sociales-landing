@@ -1,5 +1,9 @@
 import type { Page } from './types';
 
+/** Recorta una descripción sin cortar palabras a la mitad (Google muestra ~160 caracteres). */
+const recortar = (texto: string, max = 160): string => (texto.length <= max ? texto : `${texto.slice(0, max - 1).replace(/[\s,.;:]+\S*$/, '')}…`);
+
+
 /**
  * Páginas locales (solo AMBA). Cada zona tiene datos propios para no ser una
  * página duplicada. Para potenciarlas, sumá en `extra` información real del
@@ -65,7 +69,7 @@ function zonaToPage(z: Zona): Page {
     updated: D,
     path: `${P}/${z.slug}`,
     title: `Prepagas y obras sociales ${z.en}`,
-    description: `Compará prepagas y obras sociales ${z.en}: ${lista(z.lugares.slice(0, 3))}. Planes familiares, derivación de aportes y asesoramiento sin cargo.`.slice(0, 160),
+    description: recortar(`Compará prepagas y obras sociales ${z.en}: ${lista(z.lugares.slice(0, 3))}. Planes familiares, derivación de aportes y asesoramiento sin cargo.`),
     label: `Prepagas en ${z.region}`,
     h1: 'Prepagas y obras sociales',
     h1Em: `${z.en}.`,

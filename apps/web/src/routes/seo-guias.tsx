@@ -7,6 +7,7 @@ import { getGuiasHub } from '@/content/index.server';
 import { withBrand } from '@/lib/page-meta';
 import { breadcrumbSchema, businessSchema } from '@/lib/schema';
 import { seo, siteOriginFrom } from '@/lib/seo';
+import { SHARE_IMAGE_URL } from '@/constants/brand';
 
 const PATH = '/guias';
 const BREADCRUMBS = [{ name: 'Inicio', path: '/' }, { name: 'Guías', path: PATH }];
@@ -22,6 +23,7 @@ export function meta({ matches, location }: Route.MetaArgs) {
     title: withBrand('Guías sobre prepagas y obras sociales'),
     description: 'Guías claras sobre prepagas y obras sociales en CABA y el AMBA: cómo elegir, derivar aportes, cambiarte, sumar a tu familia y comparar planes.',
     path: PATH,
+    image: SHARE_IMAGE_URL,
     jsonLd: [businessSchema(origin), breadcrumbSchema(origin, BREADCRUMBS)],
   });
 }

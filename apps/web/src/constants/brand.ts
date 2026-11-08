@@ -5,11 +5,16 @@
  * ========================================================================== */
 
 export const FIRM_NAME = 'Compara Tu Obra Social';
-export const LOGO_URL = 'https://horizons-cdn.hostinger.com/151eeb22-3829-49b1-ac75-b50202e69fd3/7a57f98a8bf0d1bd90419ea1ea9eb502.png';
-export const SHARE_IMAGE_URL = 'https://images.hostinger.com/7bbe0a7b-418c-4cfd-bc96-ac602b28175d.png';
+/** Imágenes servidas desde el propio sitio (el CDN de Hostinger dejó de responder). */
+export const LOGO_URL = '/logo-marca.png';
+/** Imagen para compartir el enlace (WhatsApp, redes): 1200 × 630. */
+export const SHARE_IMAGE_URL = '/img/og-compartir.jpg';
+export const HERO_IMAGE_URL = '/img/familia-cobertura.webp';
 
 /** Dominio definitivo con https y sin barra final. Ej: 'https://www.comparatuobrasocial.com.ar'. */
 export const SITE_URL = 'https://comparatuobrasocial.com';
+/** Logo con dominio completo, para los datos estructurados. */
+export const LOGO_ABSOLUTE_URL = `${SITE_URL}${LOGO_URL}`;
 
 /** Teléfono como se muestra, ej. '(011) 4000-0000', y en formato internacional para marcar, ej. '+541140000000'. */
 export const PHONE = '11 7290-0587';
@@ -33,7 +38,7 @@ export const ADDRESS = { street: '', locality: '', region: 'Ciudad Autónoma de 
 export const VERIFICATION = { google: '', bing: '' };
 
 /** Clave de IndexNow (32 letras/números) para indexación rápida en Bing y otros. */
-export const INDEXNOW_KEY = '';
+export const INDEXNOW_KEY = 'ef7f42934dfc998c957427d80fe1036c';
 
 /* ======================= Derivados — no hace falta editar ======================= */
 

@@ -21,7 +21,7 @@ import { SiteHeader } from '@/components/site-header';
 import { SiteFooter } from '@/components/site-footer';
 import { WhatsAppAction } from '@/components/whatsapp-action';
 
-const logo = 'https://horizons-cdn.hostinger.com/151eeb22-3829-49b1-ac75-b50202e69fd3/7a57f98a8bf0d1bd90419ea1ea9eb502.png';
+const logo = '/logo-marca.png';
 
 // Se vuelve a ejecutar en cada cambio de página: si no, al volver a la home con
 // la navegación interna, las secciones con animación quedaban invisibles.
@@ -40,6 +40,7 @@ export const links: Route.LinksFunction = () => [
 	{ rel: 'stylesheet', href: articulosStylesheet },
 	{ rel: 'stylesheet', href: ajustesStylesheet },
 	{ rel: 'icon', href: logo, type: 'image/png' },
+	{ rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
 	{ rel: 'preconnect', href: 'https://fonts.googleapis.com' },
 	{
 		rel: 'preconnect',

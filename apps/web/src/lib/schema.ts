@@ -1,5 +1,5 @@
 /** Datos estructurados (JSON-LD): no se ven, le explican a Google qué es el sitio y cada página. */
-import { ADDRESS, EMAIL, FIRM_NAME, LOGO_URL, PHONE, SOCIAL_LINKS } from '@/constants/brand';
+import { ADDRESS, EMAIL, FIRM_NAME, LOGO_ABSOLUTE_URL, PHONE, SOCIAL_LINKS } from '@/constants/brand';
 
 const CONTEXT = 'https://schema.org';
 export const firmId = (origin: string) => `${origin}/#asesor`;
@@ -18,8 +18,8 @@ export function businessSchema(origin: string) {
     name: FIRM_NAME,
     description: 'Asesoramiento para comparar y contratar prepagas y obras sociales en CABA y el AMBA.',
     url: `${origin}/`,
-    logo: LOGO_URL,
-    image: LOGO_URL,
+    logo: LOGO_ABSOLUTE_URL,
+    image: LOGO_ABSOLUTE_URL,
     telephone: PHONE || undefined,
     email: EMAIL || undefined,
     address: hasAddress
@@ -55,7 +55,7 @@ export function articleSchema(origin: string, article: { path: string; title: st
     inLanguage: 'es-AR',
     datePublished: article.published,
     dateModified: article.updated,
-    image: LOGO_URL,
+    image: LOGO_ABSOLUTE_URL,
     author: { '@id': firmId(origin) },
     publisher: { '@id': firmId(origin) },
   };

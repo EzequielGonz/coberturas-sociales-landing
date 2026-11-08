@@ -1,5 +1,9 @@
 import type { Page } from './types';
 
+/** Recorta una descripción sin cortar palabras a la mitad (Google muestra ~160 caracteres). */
+const recortar = (texto: string, max = 160): string => (texto.length <= max ? texto : `${texto.slice(0, max - 1).replace(/[\s,.;:]+\S*$/, '')}…`);
+
+
 /**
  * Páginas por prepaga y comparativas.
  *
@@ -99,7 +103,7 @@ function marcaToPage(m: Marca): Page {
     title: `${m.nombre}: planes, cartilla y cómo afiliarte en AMBA`.length <= 62
       ? `${m.nombre}: planes, cartilla y cómo afiliarte en AMBA`
       : `${m.nombre}: cómo afiliarte en AMBA`,
-    description: `Todo sobre ${m.nombre} en CABA y GBA: qué ofrece, para quién conviene, cómo derivar tus aportes y cómo afiliarte con asesoramiento sin cargo.`.slice(0, 160),
+    description: recortar(`Todo sobre ${m.nombre} en CABA y GBA: qué ofrece, para quién conviene, cómo derivar tus aportes y cómo afiliarte con asesoramiento sin cargo.`),
     label: 'Prepagas en CABA y GBA',
     h1: m.nombre,
     h1Em: 'planes, cartilla y afiliación.',

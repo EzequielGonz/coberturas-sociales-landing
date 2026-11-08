@@ -12,7 +12,7 @@ export const SHARE_IMAGE_URL = '/img/og-compartir.jpg';
 export const HERO_IMAGE_URL = '/img/familia-cobertura.webp';
 
 /** Dominio definitivo con https y sin barra final. Ej: 'https://www.comparatuobrasocial.com.ar'. */
-export const SITE_URL = 'https://comparatuobrasocial.com';
+export const SITE_URL = 'https://www.comparatuobrasocial.com';
 /** Logo con dominio completo, para los datos estructurados. */
 export const LOGO_ABSOLUTE_URL = `${SITE_URL}${LOGO_URL}`;
 

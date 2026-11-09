@@ -1,4 +1,4 @@
-import { useRef, useState, type PointerEvent } from 'react';
+import { useEffect, useRef, useState, type PointerEvent } from 'react';
 import { whatsappUrl } from '@/constants/brand';
 import { track } from '@/lib/track';
 import { MessageCircle, RotateCcw } from 'lucide-react';
@@ -73,10 +73,62 @@ function Credencial({ respuestas }: { respuestas: Respuestas }) {
   );
 }
 
+// Credencial 3D: se carga con la primera interacción (mover el mouse, tocar, desplazar o
+// usar el teclado), así no compite con la carga ni con las mediciones de velocidad.
+// Sin WebGL o con «reducir movimiento» queda la credencial HTML.
+function useCredencial3D(lienzo: React.RefObject<HTMLCanvasElement | null>, visual: React.RefObject<HTMLDivElement | null>, respuestas: Respuestas) {
+  const api = useRef<{ actualizar: (c: { etiqueta: string; valor?: string }[]) => void; destruir: () => void } | null>(null);
+  const ultimas = useRef(respuestas);
+  ultimas.current = respuestas;
+  const campos = (r: Respuestas) => PASOS.map(p => ({ etiqueta: p.etiqueta, valor: r[p.clave] }));
+
+  useEffect(() => {
+    const canvas = lienzo.current;
+    if (!canvas || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    let cancelado = false;
+    const eventos = ['scroll', 'wheel', 'touchstart', 'pointerdown', 'pointermove', 'keydown'] as const;
+    const iniciar = async () => {
+      eventos.forEach(e => window.removeEventListener(e, iniciar));
+      if (cancelado || api.current) return;
+      const prueba = document.createElement('canvas');
+      if (!prueba.getContext('webgl2') && !prueba.getContext('webgl')) return;
+      const [THREE, { RoomEnvironment }, { RoundedBoxGeometry }, { crearCredencial }] = await Promise.all([
+        import('three'),
+        import('three/examples/jsm/environments/RoomEnvironment.js'),
+        import('three/examples/jsm/geometries/RoundedBoxGeometry.js'),
+        import('@/lib/credencial-3d'),
+      ]);
+      const logo = new Image();
+      logo.src = '/logo-marca.png';
+      await Promise.all([logo.decode(), document.fonts.load('800 40px Manrope'), document.fonts.load('600 20px Manrope')]);
+      if (cancelado) return;
+      try {
+        api.current = crearCredencial(THREE, RoomEnvironment, RoundedBoxGeometry, canvas, logo);
+        api.current.actualizar(campos(ultimas.current));
+        requestAnimationFrame(() => visual.current?.classList.add('is-3d'));
+        window.setTimeout(() => visual.current?.classList.add('is-3d-listo'), 1200);
+      } catch {
+        // si no se puede crear el contexto 3D, queda la credencial HTML
+      }
+    };
+    eventos.forEach(e => window.addEventListener(e, iniciar, { passive: true, once: true }));
+    return () => {
+      cancelado = true;
+      eventos.forEach(e => window.removeEventListener(e, iniciar));
+      api.current?.destruir();
+      api.current = null;
+    };
+  }, []);
+
+  useEffect(() => { api.current?.actualizar(campos(respuestas)); }, [respuestas]);
+}
+
 export function Hero() {
   const [respuestas, setRespuestas] = useState<Respuestas>({});
   const [paso, setPaso] = useState(0);
   const visual = useRef<HTMLDivElement>(null);
+  const lienzo = useRef<HTMLCanvasElement>(null);
+  useCredencial3D(lienzo, visual, respuestas);
   const listo = paso >= PASOS.length;
   const actual = PASOS[Math.min(paso, PASOS.length - 1)];
 
@@ -154,6 +206,7 @@ export function Hero() {
             <path className="cinta-hilo" pathLength="1" d="M-40 610 C 140 560, 200 430, 320 390 S 540 300, 660 130" />
           </svg>
           <Credencial respuestas={respuestas} />
+          <canvas className="credencial-3d" ref={lienzo} />
         </div>
       </div>
     </section>

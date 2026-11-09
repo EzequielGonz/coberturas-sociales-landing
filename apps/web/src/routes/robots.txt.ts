@@ -65,25 +65,12 @@ const AI_TRAINING_AGENTS = [
 	'Bytespider',
 ];
 
-/**
- * Content signals (contentsignals.org) state what crawlers may do with the
- * content once fetched: appear in search results, ground an AI answer, or train
- * a model. Search and AI answers are allowed because they bring readers back;
- * training is not, which is the default every publisher starts from.
- *
- * A named group replaces the wildcard group for that agent rather than adding
- * to it, so the signal is repeated inside each one — otherwise the agents it is
- * aimed at are the only ones that never read it.
- */
-const CONTENT_SIGNAL = 'Content-Signal: search=yes, ai-input=yes, ai-train=no';
-
 function publishedRules(origin: string): string[] {
 	return [
 		'User-agent: *',
-		CONTENT_SIGNAL,
 		'Allow: /',
 		'',
-		...AI_ANSWER_AGENTS.flatMap(agent => [`User-agent: ${agent}`, CONTENT_SIGNAL, 'Allow: /', '']),
+		...AI_ANSWER_AGENTS.flatMap(agent => [`User-agent: ${agent}`, 'Allow: /', '']),
 		...AI_TRAINING_AGENTS.flatMap(agent => [`User-agent: ${agent}`, 'Disallow: /', '']),
 		`Sitemap: ${origin}/sitemap.xml`,
 	];

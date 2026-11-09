@@ -38,7 +38,7 @@ export function SiteHeader() {
   };
   return <header className={`site-header ${hidden ? 'site-header--hidden' : ''}`}>
     <div className="header-inner">
-      <a className="brand" href="/#inicio" aria-label={`${FIRM_NAME} — inicio`} onClick={() => setOpen(false)}><img src={LOGO_URL} alt={`Logo de ${FIRM_NAME}`} width="48" height="48" /><span>Compara <strong>Tu Obra Social</strong></span></a>
+      <a className="brand" href="/#inicio" aria-label={`${FIRM_NAME} — inicio`} onClick={() => setOpen(false)}><img src={LOGO_URL} alt="" width="52" height="48" /><span>Compara <strong>Tu Obra Social</strong></span></a>
       <nav className="desktop-nav" aria-label="Navegación principal">{links.map(link => renderLink(link))}</nav>
       <div className="header-actions"><WhatsAppAction className="header-whatsapp" label="Consultar por WhatsApp" /><button className="menu-toggle" type="button" aria-label={open ? 'Cerrar menú' : 'Abrir menú'} aria-expanded={open} aria-controls="mobile-nav" onClick={() => { setOpen(!open); setHidden(false); }}>{open ? <X size={23} /> : <Menu size={23} />}</button></div>
     </div>

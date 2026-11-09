@@ -84,7 +84,7 @@ export function LeadForm({ tipo, origen, whatsappMessage }: Props) {
     <section className="form-section section-pad" id="contacto">
       <div className="container form-layout">
         <div className="form-intro">
-          <p className="eyebrow">{CTA.form.label}</p>
+          
           <h2>{CTA.form.title} <em>{CTA.form.titleEm}</em></h2>
           <p>{CTA.form.intro}</p>
           <div className="form-aside"><span className="aside-rule" /><p>{CTA.form.aside}</p></div>

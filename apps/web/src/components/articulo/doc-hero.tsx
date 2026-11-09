@@ -20,7 +20,7 @@ function WithPeriod({ text }: { text: string }) {
   return text.endsWith('.') ? <>{text.slice(0, -1)}<span className="period">.</span></> : <>{text}</>;
 }
 
-export function DocHero({ label, h1, h1Em, lead, breadcrumbs, updated, origen, whatsappMessage }: Props) {
+export function DocHero({ h1, h1Em, lead, breadcrumbs, updated, origen, whatsappMessage }: Props) {
   return (
     <section className="doc-hero">
       <div className="container">
@@ -34,7 +34,7 @@ export function DocHero({ label, h1, h1Em, lead, breadcrumbs, updated, origen, w
               ))}
             </ol>
           </nav>
-          <p className="eyebrow"><span className="eyebrow-line" /> {label}</p>
+          
           <h1>{h1Em ? <>{h1} <em><WithPeriod text={h1Em} /></em></> : <WithPeriod text={h1} />}</h1>
           <p className="doc-lead">{lead}</p>
           <div className="hero-buttons">

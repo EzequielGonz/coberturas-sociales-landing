@@ -13,6 +13,9 @@ import stylesheet from '@/index.css?url';
 import articulosStylesheet from '@/styles/articulos.css?url';
 // Ajustes del 21/10 (CTA por sección, WhatsApp, nombre de la firma). Va último para prevalecer.
 import ajustesStylesheet from '@/styles/ajustes.css?url';
+// Fuentes propias (sin Google Fonts) y pulido visual del 09/11. Van al final para prevalecer.
+import fuentesStylesheet from '@/styles/fuentes.css?url';
+import pulidoStylesheet from '@/styles/pulido.css?url';
 import { publicOrigin } from '@/lib/site-origin.server';
 import { VERIFICATION } from '@/constants/brand';
 import { HorizonsPreviewScripts } from './horizons-preview-scripts';
@@ -39,18 +42,11 @@ export const links: Route.LinksFunction = () => [
 	{ rel: 'stylesheet', href: stylesheet },
 	{ rel: 'stylesheet', href: articulosStylesheet },
 	{ rel: 'stylesheet', href: ajustesStylesheet },
+	{ rel: 'preload', href: '/fonts/manrope-normal-latin-58ee19.woff2', as: 'font', type: 'font/woff2', crossOrigin: 'anonymous' },
+	{ rel: 'stylesheet', href: fuentesStylesheet },
+	{ rel: 'stylesheet', href: pulidoStylesheet },
 	{ rel: 'icon', href: logo, type: 'image/png' },
 	{ rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
-	{ rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-	{
-		rel: 'preconnect',
-		href: 'https://fonts.gstatic.com',
-		crossOrigin: 'anonymous',
-	},
-	{
-		rel: 'stylesheet',
-		href: 'https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap',
-	},
 ];
 
 /**

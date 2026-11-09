@@ -118,7 +118,7 @@ export function ArticlePage({ data, children }: Props) {
       {related.length > 0 && (
         <section className="doc-related section-pad">
           <div className="container">
-            <p className="eyebrow">Seguí leyendo</p>
+            
             <h2>Guías <em>relacionadas.</em></h2>
             <LinkRows links={related} />
           </div>

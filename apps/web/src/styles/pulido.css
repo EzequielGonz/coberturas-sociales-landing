@@ -1,0 +1,47 @@
+/* Pulido visual del 09/11/2026: sin etiquetas sobre los títulos, hero concreto,
+   pie de página ordenado, microinteracciones y entrada escalonada del hero. */
+
+::selection { background: #daf1de; color: #0b2b26; }
+
+/* Hero: entrada escalonada */
+.hero-copy > * { animation: entrada .7s cubic-bezier(.2,.7,.2,1) both; }
+.hero-copy > :nth-child(2) { animation-delay: .08s; }
+.hero-copy > :nth-child(3) { animation-delay: .16s; }
+@keyframes entrada { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.hero-visual img { transition: transform 1.2s cubic-bezier(.2,.7,.2,1); }
+.hero-visual:hover img { transform: scale(1.02); }
+
+/* Botones y foco */
+.button { transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease; }
+.button:hover { transform: translateY(-1px); box-shadow: 0 10px 24px rgba(11, 43, 38, .14); }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid #235347; outline-offset: 3px; border-radius: 4px; }
+
+/* Pie de página */
+.site-footer { background: #f5faf6; border-top: 1px solid #d5e6da; padding-top: 80px; }
+.footer-main { grid-template-columns: 1.5fr .9fr .9fr 1.5fr; gap: 48px; padding-bottom: 64px; }
+.footer-logo img { width: 54px; height: auto; }
+.footer-logo span { font-size: 16px; }
+.footer-brand p { max-width: 330px; font-size: 15px; line-height: 1.65; color: #3f5f55; margin: 22px 0 24px; }
+.footer-cta { display: inline-flex; align-items: center; gap: 10px; padding: 13px 22px; border-radius: 999px; background: #0b2b26; color: #daf1de; font-size: 14px; font-weight: 700; transition: transform .2s ease, background-color .2s ease; }
+.footer-cta:hover { background: #235347; transform: translateY(-1px); }
+.footer-links, .footer-contact { gap: 4px; font-size: 15px; }
+.footer-links h3, .footer-contact h3 { font-size: 15px; font-weight: 800; color: #0b2b26; margin: 0 0 12px; }
+.footer-links a, .footer-contact a { display: inline-flex; align-items: center; gap: 12px; min-height: 36px; color: #2f4a42; }
+.footer-links a:hover, .footer-contact a:hover { color: #0b2b26; }
+.footer-contact a { white-space: nowrap; }
+.footer-contact svg { color: #4e856b; flex: none; }
+.footer-bottom { font-size: 13px; color: #587268; padding-right: 76px; }
+.footer-top:hover { color: #0b2b26; }
+
+@media (max-width: 640px) {
+  .footer-main { grid-template-columns: 1fr 1fr; gap: 40px 22px; padding-bottom: 44px; }
+  .footer-brand, .footer-contact { grid-column: 1 / -1; }
+  .footer-links a, .footer-contact a { min-height: 42px; }
+  .footer-links a { white-space: nowrap; font-size: 14px; }
+  .footer-contact a { white-space: normal; overflow-wrap: anywhere; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 6px; font-size: 12px; }
+}
+
+/* Logo original (proporción 1,08): sin forzar un cuadrado */
+.brand img { width: 46px; height: auto; object-fit: contain; }
+@media (max-width: 640px) { .brand img { width: 40px; height: auto; } }

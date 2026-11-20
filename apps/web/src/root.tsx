@@ -1,6 +1,7 @@
 import {
 	data,
 	isRouteErrorResponse,
+	useRouteLoaderData,
 	Links,
 	Meta,
 	Outlet,
@@ -19,6 +20,8 @@ import pulidoStylesheet from '@/styles/pulido.css?url';
 // Rediseño premium del 09/11: pino, lima y niebla. Va último para prevalecer.
 import premiumStylesheet from '@/styles/premium.css?url';
 import { publicOrigin } from '@/lib/site-origin.server';
+import { SIN_ANALITICA, configAnalitica } from '@/lib/analitica';
+import { AnaliticaHead, MedicionCliente } from '@/components/medicion';
 import { VERIFICATION } from '@/constants/brand';
 import { HorizonsPreviewScripts } from './horizons-preview-scripts';
 import { useEffect } from 'react';
@@ -62,9 +65,16 @@ export const links: Route.LinksFunction = () => [
  */
 export function loader({ request }: Route.LoaderArgs) {
 	const origin = publicOrigin(request);
+	// Analítica y verificaciones: solo lo que esté cargado en las variables de
+	// entorno (NEXT_PUBLIC_*); los códigos de brand.ts quedan como respaldo.
+	const analitica = configAnalitica({
+		NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION: VERIFICATION.google,
+		NEXT_PUBLIC_BING_SITE_VERIFICATION: VERIFICATION.bing,
+		...Object.fromEntries(Object.entries(process.env).filter(([, valor]) => valor)),
+	});
 
 	return data(
-		{ origin },
+		{ origin, analitica },
 		{ headers: { Link: `<${origin}/sitemap.xml>; rel="sitemap"; type="application/xml"` } },
 	);
 }
@@ -78,15 +88,15 @@ export function headers({ loaderHeaders }: Route.HeadersArgs) {
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
+	const analitica = useRouteLoaderData<typeof loader>('root')?.analitica ?? SIN_ANALITICA;
 	return (
 		<html lang="es-AR">
 			<head>
 				<meta charSet="utf-8" />
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
-				{VERIFICATION.google && <meta name="google-site-verification" content={VERIFICATION.google} />}
-				{VERIFICATION.bing && <meta name="msvalidate.01" content={VERIFICATION.bing} />}
 				<Meta />
 				<Links />
+				<AnaliticaHead config={analitica} />
 				<HorizonsPreviewScripts />
 			</head>
 			<body>
@@ -99,7 +109,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-	return <><RevealObserver /><SiteHeader /><main><Outlet /></main><SiteFooter /><WhatsAppAction className="floating-whatsapp" label="Consultar por WhatsApp" /></>;
+	return <><RevealObserver /><SiteHeader /><main><Outlet /></main><SiteFooter /><WhatsAppAction className="floating-whatsapp" label="Consultar por WhatsApp" /><MedicionCliente /></>;
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {

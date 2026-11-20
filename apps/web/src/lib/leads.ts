@@ -9,6 +9,8 @@
  *  - 'none'     → no guarda nada (estado actual).
  * ========================================================================== */
 
+import { datosParaFormulario } from '@/lib/atribucion';
+
 export type LeadsProvider = 'supabase' | 'webhook' | 'none';
 
 /** 21/10: las consultas van al CRM (Supabase) y el agente escribe por WhatsApp a los 5 minutos. */
@@ -72,5 +74,5 @@ function paraCrm(l: Lead & { origen: string }) {
     ['Zona', l.zona],
   ];
   const descripcion = [...extras.filter(([, v]) => v && String(v).trim()).map(([k, v]) => `${k}: ${v}`), l.detalle ?? ''].filter(Boolean).join('\n');
-  return { nombre: l.nombre, apellido: l.apellido, telefono: l.telefono, email: l.email, tipo: l.busqueda, descripcion: descripcion || l.busqueda, origen: l.origen, llegada: typeof document === 'undefined' ? '' : document.referrer };
+  return { nombre: l.nombre, apellido: l.apellido, telefono: l.telefono, email: l.email, tipo: l.busqueda, descripcion: descripcion || l.busqueda, origen: l.origen, ...datosParaFormulario() };
 }

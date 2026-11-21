@@ -18,3 +18,7 @@ declare module 'virtual:horizons-edit-mode';
 declare module 'virtual:horizons-iframe-route-restoration';
 declare module 'virtual:horizons-pocketbase-auth';
 declare module 'virtual:session-journal-client';
+
+/** Fechas del último cambio (AAAA-MM-DD), calculadas al compilar en vite.config.ts. */
+declare const __FECHA_CONTENIDO__: string | undefined;
+declare const __FECHA_PORTADA__: string | undefined;

@@ -65,12 +65,21 @@ const AI_TRAINING_AGENTS = [
 	'Bytespider',
 ];
 
+/**
+ * Archivos de las publicaciones de redes (imágenes y videos que toma Metricool):
+ * no son páginas y no tienen que aparecer en buscadores. Cada grupo con nombre
+ * propio repite la regla porque un rastreador solo lee el grupo que lo nombra.
+ */
+const PRIVATE_PATHS = ['/redes/'];
+
 function publishedRules(origin: string): string[] {
+	const privatePaths = PRIVATE_PATHS.map(path => `Disallow: ${path}`);
 	return [
 		'User-agent: *',
 		'Allow: /',
+		...privatePaths,
 		'',
-		...AI_ANSWER_AGENTS.flatMap(agent => [`User-agent: ${agent}`, 'Allow: /', '']),
+		...AI_ANSWER_AGENTS.flatMap(agent => [`User-agent: ${agent}`, 'Allow: /', ...privatePaths, '']),
 		...AI_TRAINING_AGENTS.flatMap(agent => [`User-agent: ${agent}`, 'Disallow: /', '']),
 		`Sitemap: ${origin}/sitemap.xml`,
 	];

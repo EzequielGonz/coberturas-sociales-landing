@@ -1,5 +1,6 @@
 import type { Route } from './+types/sitemap.xml';
 import { publicOrigin } from '@/lib/site-origin.server';
+import { FECHA_CONTENIDO, FECHA_PORTADA, fechaMasReciente } from '@/lib/fechas';
 import { sitemapEntries } from '@/content/index.server';
 
 type SitemapEntry = {
@@ -50,9 +51,11 @@ async function getDynamicEntries(): Promise<SitemapEntry[]> {
 
 export async function loader({ request }: Route.LoaderArgs) {
 	const origin = publicOrigin(request);
+	// lastmod real: la fecha del último cambio del archivo (commit) o la del build,
+	// y nunca anterior a la fecha de revisión que declara cada página.
 	const entries: SitemapEntry[] = [
-		...STATIC_PATHS.map(path => ({ path })),
-		...(await getDynamicEntries()),
+		...STATIC_PATHS.map(path => ({ path, lastmod: fechaMasReciente(FECHA_PORTADA) })),
+		...(await getDynamicEntries()).map(entry => ({ ...entry, lastmod: fechaMasReciente(entry.lastmod, FECHA_CONTENIDO) })),
 	];
 
 	return new Response(serializeSitemap(origin, entries), {

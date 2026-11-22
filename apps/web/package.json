@@ -9,7 +9,8 @@
 		"start": "PORT=3000 node --env-file-if-exists=.env \"$(command -v react-router-serve)\" build/server/index.js",
 		"lint": "eslint . --quiet; lint_status=$?; eslint \"src/**/*.tsx\" --config eslint.config.mjs --format ./eslint.unicode-escapes-formatter.mjs --no-error-on-unmatched-pattern; exit $lint_status",
 		"lint:warn": "eslint .",
-		"typecheck": "react-router typegen && tsc --noEmit"
+		"typecheck": "react-router typegen && tsc --noEmit",
+		"test": "npx --yes tsx@4.23.12 --test tests/*.test.ts"
 	},
 	"dependencies": {
 		"@hookform/resolvers": "^5.2.2",
